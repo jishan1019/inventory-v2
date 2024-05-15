@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
 
     if ($pass === $rPass) {
         $sql = "INSERT INTO users_info (name, u_name , email, password)" .
-            "VALUES ('$name', '$uName', '$email', '$password')";
+            "VALUES ('$name', '$uName', '$email', '$pass')";
 
         if ($conn->query($sql) === true) {
             header('Location: login.php');
