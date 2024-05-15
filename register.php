@@ -2,6 +2,8 @@
 include 'auth/connection.php';
 $conn = connect();
 
+$m = '';
+
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $uName = $_POST['uname'];
@@ -10,11 +12,17 @@ if (isset($_POST['submit'])) {
     $rPass = $_POST['r_pass'];
 
     if ($pass === $rPass) {
-        $sql = "INSERT INTO users_info ('name', 'u_name' , 'email', 'password')" .
-            "VALUES ('$name', '$uName', 'email', 'password')";
+        $sql = "INSERT INTO users_info (name, u_name , email, password)" .
+            "VALUES ('$name', '$uName', '$email', '$password')";
+
+        if ($conn->query($sql) === true) {
+            header('Location: login.php');
+        } else {
+            $m = 'Connection not established';
+        }
 
     } else {
-        echo "Password dose not match";
+        $m = "Password dose not match";
     }
 
 }
@@ -39,8 +47,14 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+
     <form method="POST" action="register.php">
         <div class="container reg">
+            <span>
+            <?php
+              if($m != '') echo $m;
+            ?>
+            </span>
             <h1> Registration form</h1>
             <hr>
             <div>
