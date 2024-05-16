@@ -1,10 +1,21 @@
 <?php
-   
     include "auth/connection.php";
     $conn= connect();
     $m= '';
     if(isset($_POST['submit'])){
-       
+        $uName= mysqli_real_escape_string($conn, $_POST['uname']);
+        $pass= mysqli_real_escape_string($conn, $_POST['pass']);
+        
+        $sql= "SELECT * FROM users_info WHERE u_name='$uName' and password='$pass'";
+        $res= $conn->query($sql);
+
+        if(mysqli_num_rows($res)==1){
+           
+            header('Location: dashboard.php');
+        }
+        else{
+            $m= 'Credentials mismatch!';
+        }
     }
 ?>
 
