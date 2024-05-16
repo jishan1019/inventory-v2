@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include "auth/connection.php";
     $conn= connect();
     $m= '';
