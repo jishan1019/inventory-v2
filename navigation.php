@@ -1,4 +1,8 @@
 <?php
+session_start();
+$user = $_SESSION['user'];
+$userid = $_SESSION['userid'];
+
    
 ?>
 
@@ -26,7 +30,7 @@
                
 
                     <li style="float: right;"><a href="logout.php" style="padding: 0px 20px 0px 0px;"><button class="btn btn-danger navbar-btn pull-right">Logout</button></a></li>
-                    <li ><a href="#">Logged in as <b class="user">Jishan</b></a></li>
+                    <li ><a href="#">Logged in as <b class="user"><?php echo $user; ?></b></a></li>
 
                 </ul>
             </div>
