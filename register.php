@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $rPass = $_POST['r_pass'];
 
     if ($pass === $rPass) {
-        $sql = "INSERT INTO users_info (name, u_name , email, password)" .
+        $sql = "INSERT INTO user_info (name, u_name , email, password)" .
             "VALUES ('$name', '$uName', '$email', '$pass')";
 
         if ($conn->query($sql) === true) {
@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
     <form method="POST" action="register.php">
         <div class="container reg">
             <span>
-            <?php
+                <?php
               if($m != '') echo $m;
             ?>
             </span>
